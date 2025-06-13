@@ -1,0 +1,373 @@
+[2025-03-18 08:18:36] Login attempt
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [ip] => ::1
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:36] Sanitized input
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:36] Executing query
+Data: Array
+(
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:36] Query result
+Data: Array
+(
+    [num_rows] => 0
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:36] User not found
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:36] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:44] Login attempt
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [ip] => ::1
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:44] Sanitized input
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:44] Executing query
+Data: Array
+(
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:44] Query result
+Data: Array
+(
+    [num_rows] => 0
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:44] User not found
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:18:44] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] Login attempt
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [ip] => ::1
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] Sanitized input
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] Executing query
+Data: Array
+(
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] Query result
+Data: Array
+(
+    [num_rows] => 0
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] User found
+Data: Array
+(
+    [user_id] => 
+    [name] => 
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] Invalid password
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:15] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:36] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:37] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:39] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:39] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:42] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:42] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:43] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:43] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:44] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:21:49] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => GET
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] Raw POST data
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [password] => manish123
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] Sanitized input
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [password_length] => 9
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] Database connection info
+Data: Array
+(
+    [host_info] => localhost via TCP/IP
+    [server_info] => 10.4.32-MariaDB
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] All users in database
+Data: Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [email] => test@example.com
+            [name] => Test User
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] Executing query
+Data: Array
+(
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] Query result
+Data: Array
+(
+    [num_rows] => 0
+    [result_type] => object
+    [result_class] => mysqli_result
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] User not found
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+    [num_rows] => 0
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:04] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => POST
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] Raw POST data
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [password] => manish123
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] Sanitized input
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [password_length] => 9
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] Database connection info
+Data: Array
+(
+    [host_info] => localhost via TCP/IP
+    [server_info] => 10.4.32-MariaDB
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] All users in database
+Data: Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [email] => test@example.com
+            [name] => Test User
+        )
+
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] Executing query
+Data: Array
+(
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] Query result
+Data: Array
+(
+    [num_rows] => 0
+    [result_type] => object
+    [result_class] => mysqli_result
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] User not found
+Data: Array
+(
+    [email] => manishpadyar0@gmail.com
+    [query] => SELECT * FROM users WHERE email = 'manishpadyar0@gmail.com'
+    [num_rows] => 0
+)
+
+--------------------------------------------------------------------------------
+[2025-03-18 08:24:10] Page loaded
+Data: Array
+(
+    [session_id] => al2i147dcv6bri4blfn8gde205
+    [is_logged_in] => 
+    [request_method] => POST
+)
+
+--------------------------------------------------------------------------------
