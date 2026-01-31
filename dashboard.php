@@ -204,8 +204,13 @@ if (!isset($_SESSION['user_id'])) {
                 <p>Share your study materials and access notes from other students.</p>
                 <a href="upload_notes.php">Upload Notes <i class="fas fa-arrow-right"></i></a>
             </div>
-            
-           
+
+            <div class="feature-card" onclick="window.location.href='studybuddy.php'">
+                <i class="fas fa-robot"></i>
+                <h3>StudyBuddy AI</h3>
+                <p>Get clear explanations at your level. Ask questions, paste notes to summarize, and learn step by step.</p>
+                <a href="studybuddy.php">Chat with StudyBuddy <i class="fas fa-arrow-right"></i></a>
+            </div>
         </section>
     </div>
 

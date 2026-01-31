@@ -120,6 +120,7 @@ $is_logged_in = isset($_SESSION['user_id']);
                 <a href="dashboard.php" class="nav-link <?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">Dashboard</a>
                 <a href="study_planner.php" class="nav-link <?php echo $current_page == 'study_planner.php' ? 'active' : ''; ?>">Study Planner</a>
                 <a href="upload_notes.php" class="nav-link <?php echo $current_page == 'upload_notes.php' ? 'active' : ''; ?>">Upload Notes</a>
+                <a href="studybuddy.php" class="nav-link <?php echo $current_page == 'studybuddy.php' ? 'active' : ''; ?>">StudyBuddy AI</a>
             </nav>
             
             <div class="user-menu">
