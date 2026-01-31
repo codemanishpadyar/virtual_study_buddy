@@ -90,20 +90,38 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 52px;
+            padding: 14px 28px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            border: 2px solid #5a67d8;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
         }
 
         .upload-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+            border-color: #764ba2;
+        }
+
+        .upload-btn:active {
+            transform: scale(0.97) translateY(0);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .upload-btn:disabled {
+            opacity: 0.8;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .notes-grid {

@@ -319,17 +319,21 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="welcome-icon">✨</div>
                     <h2>Hi, <?php echo htmlspecialchars($_SESSION['name']); ?>!</h2>
                     <p>I'm your StudyBuddy AI. Ask me to explain a concept, summarize notes, or walk through a topic step by step.</p>
-                    <p style="margin-top:12px;font-size:13px;">Choose your level above and type your question below.</p>
+                    <p style="margin-top:12px;font-size:13px;">Choose your level above. Paste or upload notes to summarize, or ask a question below.</p>
                 </div>
             </div>
 
             <div class="input-area">
                 <div class="notes-context">
-                    <label for="notesContext">📘 Optional: Paste notes or text to summarize/explain</label>
-                    <textarea id="notesContext" placeholder="Paste your notes here if you want me to explain or summarize them..."></textarea>
+                    <label for="notesContext">📘 Paste notes or upload a file (PDF, DOCX, PPTX, TXT)</label>
+                    <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap;">
+                        <input type="file" id="fileUpload" accept=".txt,.pdf,.doc,.docx,.ppt,.pptx,.xml" style="font-size:12px;max-width:220px;" title="Upload file to extract text">
+                        <span style="font-size:11px;color:#888;" id="fileStatus"></span>
+                    </div>
+                    <textarea id="notesContext" placeholder="Paste notes or study material here to get a structured summary, or leave empty to chat."></textarea>
                 </div>
                 <div class="input-row">
-                    <textarea id="userInput" placeholder="Ask a question or describe what you want to learn..." rows="1"></textarea>
+                    <textarea id="userInput" placeholder="Ask a question or type a message..." rows="1"></textarea>
                     <button type="button" class="send-btn" id="sendBtn" title="Send">
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -339,6 +343,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
         (function() {
             const chatMessages = document.getElementById('chatMessages');
@@ -348,6 +353,8 @@ if (!isset($_SESSION['user_id'])) {
             const notesContext = document.getElementById('notesContext');
             const apiNotice = document.getElementById('apiNotice');
             const levelBtns = document.querySelectorAll('.level-btn');
+            const fileUpload = document.getElementById('fileUpload');
+            const fileStatus = document.getElementById('fileStatus');
 
             let currentLevel = 'beginner';
 
@@ -358,6 +365,124 @@ if (!isset($_SESSION['user_id'])) {
                     currentLevel = this.getAttribute('data-level');
                 });
             });
+
+            function setFileStatus(msg, isError) {
+                if (fileStatus) {
+                    fileStatus.textContent = msg || '';
+                    fileStatus.style.color = isError ? '#c00' : '#666';
+                }
+            }
+
+            function extractTextFromPdf(file) {
+                return new Promise(function(resolve, reject) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const pdfjsLib = window['pdfjsLib'] || window['pdfjs-dist/build/pdf'];
+                        if (!pdfjsLib || !pdfjsLib.getDocument) {
+                            reject(new Error('PDF.js not loaded'));
+                            return;
+                        }
+                        if (pdfjsLib.GlobalWorkerOptions && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+                        }
+                        pdfjsLib.getDocument({ data: e.target.result }).promise
+                            .then(function(pdf) {
+                                const numPages = pdf.numPages;
+                                const parts = [];
+                                function next(pageNum) {
+                                    if (pageNum > numPages) {
+                                        resolve(parts.join('\n'));
+                                        return;
+                                    }
+                                    pdf.getPage(pageNum).then(function(page) {
+                                        return page.getTextContent();
+                                    }).then(function(content) {
+                                        const line = content.items.map(function(item) { return item.str; }).join(' ');
+                                        parts.push(line);
+                                        next(pageNum + 1);
+                                    }).catch(reject);
+                                }
+                                next(1);
+                            })
+                            .catch(reject);
+                    };
+                    reader.onerror = function() { reject(new Error('Could not read file')); };
+                    reader.readAsArrayBuffer(file);
+                });
+            }
+
+            function uploadAndExtract(file) {
+                return new Promise(function(resolve, reject) {
+                    const fd = new FormData();
+                    fd.append('file', file);
+                    fetch('studybuddy_extract.php', { method: 'POST', body: fd })
+                        .then(function(r) { return r.json(); })
+                        .then(function(data) {
+                            if (data.success) resolve(data.text || '');
+                            else reject(new Error(data.error || 'Extraction failed'));
+                        })
+                        .catch(reject);
+                });
+            }
+
+            if (fileUpload) {
+                fileUpload.addEventListener('change', function() {
+                    const f = this.files && this.files[0];
+                    if (!f) return;
+                    const name = (f.name || '').toLowerCase();
+                    setFileStatus('Extracting text...', false);
+
+                    function done(text, err) {
+                        if (err) {
+                            setFileStatus(err.message || 'Failed', true);
+                            return;
+                        }
+                        notesContext.value = text || '';
+                        setFileStatus('Ready: ' + f.name, false);
+                        this.value = '';
+                    }
+
+                    const self = this;
+                    if (name.endsWith('.txt') || name.endsWith('.xml')) {
+                        const r = new FileReader();
+                        r.onload = function() {
+                            notesContext.value = r.result || '';
+                            setFileStatus('Ready: ' + f.name, false);
+                            self.value = '';
+                        };
+                        r.onerror = function() { setFileStatus('Could not read file', true); self.value = ''; };
+                        r.readAsText(f);
+                        return;
+                    }
+
+                    if (name.endsWith('.pdf')) {
+                        extractTextFromPdf(f).then(function(text) {
+                            notesContext.value = text || '';
+                            setFileStatus('Ready: ' + f.name, false);
+                            self.value = '';
+                        }).catch(function(e) {
+                            setFileStatus(e.message || 'PDF extraction failed', true);
+                            self.value = '';
+                        });
+                        return;
+                    }
+
+                    if (name.endsWith('.doc') || name.endsWith('.docx') || name.endsWith('.ppt') || name.endsWith('.pptx')) {
+                        uploadAndExtract(f).then(function(text) {
+                            notesContext.value = text || '';
+                            setFileStatus('Ready: ' + f.name, false);
+                            self.value = '';
+                        }).catch(function(e) {
+                            setFileStatus(e.message || 'Extraction failed', true);
+                            self.value = '';
+                        });
+                        return;
+                    }
+
+                    setFileStatus('Unsupported format', true);
+                    self.value = '';
+                });
+            }
 
             function scrollToBottom() {
                 chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -402,10 +527,14 @@ if (!isset($_SESSION['user_id'])) {
             }
 
             async function sendMessage() {
-                const text = (userInput.value || '').trim();
+                let text = (userInput.value || '').trim();
+                const notes = (notesContext.value || '').trim();
+
+                if (notes && !text) {
+                    text = 'Summarize the following content.';
+                }
                 if (!text) return;
 
-                const notes = (notesContext.value || '').trim();
                 userInput.value = '';
                 addMessage(text, true);
 
@@ -423,16 +552,31 @@ if (!isset($_SESSION['user_id'])) {
                         body: formData
                     });
 
-                    const data = await res.json();
+                    let data;
+                    const contentType = res.headers.get('content-type') || '';
+                    if (contentType.includes('application/json')) {
+                        data = await res.json();
+                    } else {
+                        const raw = await res.text();
+                        hideTyping();
+                        addMessage('The server did not return a valid response. If you see PHP errors above, check the server logs. Otherwise try logging in again or add your OpenAI API key in studybuddy_config.php.', false);
+                        if (raw && raw.length < 500) {
+                            console.error('StudyBuddy API response:', raw);
+                        }
+                        sendBtn.disabled = false;
+                        return;
+                    }
+
                     hideTyping();
-                    addMessage(data.reply || 'Sorry, I couldn\'t generate a response. Please try again.', false);
+                    const reply = data.reply || 'Sorry, I couldn\'t generate a response. Please try again.';
+                    addMessage(reply, false);
 
                     if (data.using_demo !== undefined && !data.using_demo) {
                         apiNotice.textContent = 'Powered by AI.';
                     }
                 } catch (e) {
                     hideTyping();
-                    addMessage('Something went wrong. Please check your connection and try again.', false);
+                    addMessage('Something went wrong. Please check your connection, that you are logged in, and try again. Error: ' + (e.message || 'Unknown'), false);
                 }
 
                 sendBtn.disabled = false;
