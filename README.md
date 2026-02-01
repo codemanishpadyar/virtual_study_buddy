@@ -6,8 +6,6 @@ This project is implemented using **PHP, HTML, CSS, and JavaScript**, offering a
 
 ---
 
-## 🚀 Features
-
 ### 📌 Core Functionality
 - **User Authentication** – Secure signup and login system.
 - **Study Planner** – Plan study sessions and keep track of goals.
