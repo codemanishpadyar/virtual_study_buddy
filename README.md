@@ -28,3 +28,5 @@ StudyBuddy is a web-based application designed to provide users with an AI-power
 4. Manage your study tasks and schedule through the `study_planner.php` file.
 
 Note: This repository does not include the database schema or the OpenAI API key. You will need to set up your own database and obtain an API key to use the application.
+you can get your api key from: 
+https://platform.openai.com/api-keys
